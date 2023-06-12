@@ -18,6 +18,7 @@ function App() {
   const handleBackClick = () => {
     setSelectedLocation(null);
     setIsClicked(false);
+    setUrl('https://pokeapi.co/api/v2/location?offset=0&limit=20');
   };
 
   useEffect(() => {
@@ -26,11 +27,11 @@ function App() {
       .then(data => {
         console.log(data);
         setData(data);
-        if(data.areas){
+/*         if(data.areas){
         setSelectedLocation(data.areas[0])
-        }
+        } */
       });
-  }, []);
+  }, [url]);
 
 
 
