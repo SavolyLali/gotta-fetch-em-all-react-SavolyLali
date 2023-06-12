@@ -15,6 +15,10 @@ function App() {
     setUrl(location.url)
   };
 
+  const handleBackClick = () => {
+    setSelectedLocation(null);
+    setIsClicked(false);
+  };
 
   useEffect(() => {
     fetch(url)
@@ -32,12 +36,12 @@ function App() {
 
   return (
     <div className="App">
-      {data && !isClicked && (
+      {data && !selectedLocation &&(
         <Locations locations={data.results} onClick={handleCountryClick}/>
       )}
 
-      {isClicked && (
-        <FightLocation location={selectedLocation} />
+      {selectedLocation && isClicked && (
+        <FightLocation location={selectedLocation} onClick={handleBackClick} />
       )}
     </div>
   );
