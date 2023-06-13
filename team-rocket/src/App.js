@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Locations from './components/Locations';
 import FightLocation from './components/FightLocation';
+import EnemyPokemon  from './components/EnemyPokemon';
 
 function App() {
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/location?offset=0&limit=20');
@@ -18,6 +19,7 @@ function App() {
   const handleBackClick = () => {
     setSelectedLocation(null);
     setIsClicked(false);
+    setUrl('https://pokeapi.co/api/v2/location?offset=0&limit=20');
   };
 
   useEffect(() => {
@@ -26,11 +28,8 @@ function App() {
       .then(data => {
         console.log(data);
         setData(data);
-        if(data.areas){
-        setSelectedLocation(data.areas[0])
-        }
       });
-  }, []);
+  }, [selectedLocation]);
 
 
 
@@ -41,7 +40,10 @@ function App() {
       )}
 
       {selectedLocation && isClicked && (
+        <div>
         <FightLocation location={selectedLocation} onClick={handleBackClick} />
+        <EnemyPokemon/>
+        </div>
       )}
     </div>
   );
