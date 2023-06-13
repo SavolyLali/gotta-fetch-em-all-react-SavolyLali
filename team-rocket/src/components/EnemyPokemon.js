@@ -10,8 +10,9 @@ const EnemyPokemon = () => {
     .then(response => response.json())
     .then(data => {
       const secondUrl = data.results[Math.floor(Math.random() * 20)].url; 
+      console.log(secondUrl)
       
-      fetch(secondUrl)
+      return fetch(secondUrl)
         .then(response => response.json())
         .then(secondData => {
           const pokemonProps = {
@@ -26,7 +27,6 @@ const EnemyPokemon = () => {
         })
     })
   }, []);
-console.log('dikszoszi')
   return (
     <div>
     <div>{pokemonData && pokemonData.name}</div>

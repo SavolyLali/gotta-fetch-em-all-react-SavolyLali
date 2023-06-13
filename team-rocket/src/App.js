@@ -3,6 +3,7 @@ import './App.css';
 import Locations from './components/Locations';
 import FightLocation from './components/FightLocation';
 import EnemyPokemon  from './components/EnemyPokemon';
+import MyPokemons  from './components/MyPokemons';
 
 function App() {
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/location?offset=0&limit=20');
@@ -29,20 +30,20 @@ function App() {
         console.log(data);
         setData(data);
       });
-  }, [selectedLocation]);
-
+  }, [url]);
 
 
   return (
     <div className="App">
-      {data && !selectedLocation &&(
-        <Locations locations={data.results} onClick={handleCountryClick}/>
+      {!selectedLocation && (
+        data && <Locations locations={data.results} onClick={handleCountryClick} />
       )}
-
+  
       {selectedLocation && isClicked && (
         <div>
-        <FightLocation location={selectedLocation} onClick={handleBackClick} />
-        <EnemyPokemon/>
+          <FightLocation location={selectedLocation} onClick={handleBackClick} />
+          <EnemyPokemon />
+          <MyPokemons/>
         </div>
       )}
     </div>
