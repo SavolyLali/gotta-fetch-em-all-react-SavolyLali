@@ -18,7 +18,8 @@ const EnemyPokemon = () => {
             name : secondData.name,
             hp : secondData.stats[0].base_stat,
             attack : secondData.stats[1].base_stat,
-            defense : secondData.stats[2].base_stat
+            defense : secondData.stats[2].base_stat,
+            url_front : secondData.sprites.versions['generation-v']['black-white'].animated.front_default
           };
           setPokemonData(pokemonProps)
           console.log(pokemonProps);
@@ -27,7 +28,10 @@ const EnemyPokemon = () => {
   }, []);
 console.log('dikszoszi')
   return (
+    <div>
     <div>{pokemonData && pokemonData.name}</div>
+    <img src={pokemonData && pokemonData.url_front}/>
+    </div>
   )
 }
 
