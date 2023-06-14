@@ -55,3 +55,6 @@ code {
 .verylow{
   background-color: rgb(150, 0, 0);
 }
+.location{
+  backdrop-filter: blur(3px);
+}
