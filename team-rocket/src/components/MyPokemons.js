@@ -25,6 +25,7 @@ const MyPokemons = (props) => {
     <div className="my-pokemons">
       <div>{isChosen.name}</div>
       <img className="back" src={isChosen.url_back} />
+      <button id="strikeButton">Strike!</button>
     </div>
   );
 };
