@@ -3,6 +3,11 @@ import chooseSoundEffect from '../sounds/ichooseyou.mp3';
 
 const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enemyTurn }) => {
 
+  const HIGH = 0.6;
+  const MEDIUM = 0.4;
+  const LOW = 0.2;
+  const HUNDRED_PERCENT = 100;
+
   const playSoundEffect = () => {
     const audio = new Audio(chooseSoundEffect);
     audio.play();
@@ -33,10 +38,11 @@ const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enem
       <img className={battlePokemon.hit ? 'back pokemonHit' : 'back'} src={battlePokemon.url_back} alt="" />
       <div id="hpwrap">
         <div id="hpbar">
-          <div id="hp" className={(battlePokemon.hp / battlePokemon.maxHp) >= 0.6 ? "veryhigh" :
-            (battlePokemon.hp / battlePokemon.maxHp) >= 0.4 ? "high" :
-              (battlePokemon.hp / battlePokemon.maxHp) >= 0.2 ? "low" :
-                "verylow"} style={{ width: `${battlePokemon.hp > 0 ? battlePokemon.hp / battlePokemon.maxHp * 100 : 0}%` }}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
+          <div id="hp" className={(battlePokemon.hp / battlePokemon.maxHp) >= HIGH ? "veryhigh" :
+            (battlePokemon.hp / battlePokemon.maxHp) >= MEDIUM ? "high" :
+              (battlePokemon.hp / battlePokemon.maxHp) >= LOW ? "low" :
+                "verylow"} style={{ width: `${battlePokemon.hp > 0 ? battlePokemon.hp / battlePokemon.maxHp
+                  * HUNDRED_PERCENT : 0}%` }}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
         </div>
       </div>
       {enemyTurn ?

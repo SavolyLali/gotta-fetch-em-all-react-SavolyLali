@@ -64,15 +64,18 @@ function App() {
   }
 
   const addNewPokemon = () => {
+    const HEALTH = 0;
+    const ATTACK = 1;
+    const DEFENSE = 2;
     fetch(enemyPokemon.defeat)
       .then(response => response.json())
       .then(secondData => {
         const pokemonProps = {
           name: secondData.name,
-          hp: secondData.stats[0].base_stat,
-          maxHp: secondData.stats[0].base_stat,
-          attack: secondData.stats[1].base_stat,
-          defense: secondData.stats[2].base_stat,
+          hp: secondData.stats[HEALTH].base_stat,
+          maxHp: secondData.stats[HEALTH].base_stat,
+          attack: secondData.stats[ATTACK].base_stat,
+          defense: secondData.stats[DEFENSE].base_stat,
           url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
           url_back: secondData.sprites.versions['generation-v']['black-white'].animated.back_default
         };
@@ -80,7 +83,8 @@ function App() {
       })
   }
 
-  const winning = () => {
+  const checkIfWon = () => {
+    const FINAL_HIT = 3500;
     if (!enemyPokemon || !enemyPokemon || enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
       if (!enemyPokemon || enemyPokemon.hp <= 0) {
         playSoundEffect(win)
@@ -94,25 +98,26 @@ function App() {
         battlePokemon.hit = false
         enemyPokemon.hit = false
         handleBackClick();
-      }, 500);
+        setEnemyTurn(false);
+      }, FINAL_HIT);
       return false;
     }
     return true;
   }
 
   const handleFightClick = () => {
+    const LONG_HIT = 5500;
+    const SHORT_HIT = 500;
     if (battlePokemon && enemyPokemon) {
       enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
       if (battlePokemon.name === 'pikachu' && enemyPokemon.hp <= 0) {
         playSoundEffect(pikachu)
         enemyPokemon.hit = 'pikachu'
         battlePokemon.hit = false
-        /*setEnemyPokemon({ ...enemyPokemon })
-        setBattlePokemon({ ...battlePokemon })*/
         setEnemyTurn(true)
         setTimeout(() => {
-          winning()
-        }, 5500);
+          checkIfWon()
+        }, LONG_HIT);
       } else {
         enemyPokemon.hit = true
         battlePokemon.hit = false
@@ -120,8 +125,8 @@ function App() {
         setEnemyPokemon({ ...enemyPokemon })
         setBattlePokemon({ ...battlePokemon })
         setEnemyTurn(true)
-        const win = winning()
-        if (win) {
+        let isContinue = checkIfWon()
+        if (isContinue) {
           setTimeout(() => {
             playSoundEffect(pew)
             battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
@@ -129,11 +134,13 @@ function App() {
             enemyPokemon.hit = false
             setBattlePokemon({ ...battlePokemon })
             setEnemyPokemon({ ...enemyPokemon })
-            winning()
-            setTimeout(() => {
-              setEnemyTurn(false)
-            }, 500);
-          }, 500);
+            isContinue = checkIfWon()
+            if (isContinue) {
+              setTimeout(() => {
+                setEnemyTurn(false)
+              }, SHORT_HIT);
+            }
+          }, SHORT_HIT);
         }
       }
     }
@@ -142,10 +149,11 @@ function App() {
   const pikachuSuper = (pokemon) => {
     pokemon = { ...pokemon }
     if (pokemon.name === 'pikachu') {
-      pokemon.hp = pokemon.hp * 10;
-      pokemon.maxHp = pokemon.maxHp * 10;
-      pokemon.attack = pokemon.attack * 10;
-      pokemon.defense = pokemon.defense * 10;
+      const POWER_UP = 10;
+      pokemon.hp = pokemon.hp * POWER_UP;
+      pokemon.maxHp = pokemon.maxHp * POWER_UP;
+      pokemon.attack = pokemon.attack * POWER_UP;
+      pokemon.defense = pokemon.defense * POWER_UP;
     }
     return pokemon
   }
@@ -174,16 +182,19 @@ function App() {
 
   useEffect(() => {
     document.body.classList.add('locationBackground');
+    const HEALTH = 0;
+    const ATTACK = 1;
+    const DEFENSE = 2;
     usersPokemon.forEach((url, index) => {
       fetch(url)
         .then(response => response.json())
         .then(secondData => {
           const pokemonProps = {
             name: secondData.name,
-            hp: secondData.stats[0].base_stat,
-            maxHp: secondData.stats[0].base_stat,
-            attack: secondData.stats[1].base_stat,
-            defense: secondData.stats[2].base_stat,
+            hp: secondData.stats[HEALTH].base_stat,
+            maxHp: secondData.stats[HEALTH].base_stat,
+            attack: secondData.stats[ATTACK].base_stat,
+            defense: secondData.stats[DEFENSE].base_stat,
             url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
             url_back: secondData.sprites.versions['generation-v']['black-white'].animated.back_default,
             hit: false
@@ -197,11 +208,11 @@ function App() {
   return (
     <div className="App" >
       {!selectedLocation && (
-        data && data.results && <Locations locations={data.results} onClick={handleLocationClick} />
+        data && data.results && <Locations locationList={data.results} onClick={handleLocationClick} />
       )}
 
       {selectedLocation && !selectedArea && (
-        data.areas && <Areas areas={data.areas} onClick={handleAreaClick} onBackClick={handleBackClick} />
+        data.areas && <Areas areaList={data.areas} onClick={handleAreaClick} onBackClick={handleBackClick} />
       )}
 
       {selectedLocation && selectedArea && data.pokemon_encounters && (

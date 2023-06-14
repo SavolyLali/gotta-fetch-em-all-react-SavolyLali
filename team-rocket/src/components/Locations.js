@@ -1,16 +1,14 @@
+
+
 import React from 'react';
 
-function Locations({ locations, onClick }) {
-  const handleButtonClick = (location) => {
-    onClick(location);
-  };
-
+function Locations({ locationList, onClick }) {
   return (
-    <div className='locations'>
-      {locations && locations.map(location => (
+    <div className='locationGrid'>
+      {locationList.map(location => (
         <div key={location.name} className='location'>
           <h2>{location.name}</h2>
-          <button onClick={() => handleButtonClick(location)}>
+          <button onClick={() => onClick(location)}>
             Travel
           </button>
         </div>
@@ -20,3 +18,4 @@ function Locations({ locations, onClick }) {
 }
 
 export default Locations;
+

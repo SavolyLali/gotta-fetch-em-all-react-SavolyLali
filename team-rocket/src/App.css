@@ -36,7 +36,7 @@ body {
 }
 
 
-.locations {
+.locationGrid {
   display: grid;
   grid-template-columns: 330.2px 330.2px 330.2px 330.2px;
   grid-template-rows: 110px 110px 110px 110px 110px;
@@ -221,4 +221,64 @@ body {
   60% {
     transform: translate3d(8%, 0, 0);
   }
+}
+
+@import url(http://fonts.googleapis.com/css?family=Russo+One);
+
+#hpwrap {
+  font-family: "Russo One", sans-serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px;
+}
+
+#hpbar {
+  height: 30px;
+  width: 300px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid #fff;
+  border-radius: 23px;
+  box-shadow: 1px 1px 2px #333;
+}
+
+#hp {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  line-height: 30px;
+  border-right: 1px solid #fff;
+  box-shadow: 1px 1px 2px #333;
+  text-align: left;
+}
+
+.veryhigh {
+  background-color: #89AF28;
+}
+
+.high {
+  background-color: #af7928;
+}
+
+.low {
+  background-color: rgb(223, 0, 0);
+}
+
+.verylow {
+  background-color: rgb(150, 0, 0);
+}
+
+.location {
+  backdrop-filter: blur(4px);
+}
+
+h2 {
+  scale: 1.3;
+  color: #FFCB05;
+  -webkit-text-stroke: 0.2px #3466AF;
 }
