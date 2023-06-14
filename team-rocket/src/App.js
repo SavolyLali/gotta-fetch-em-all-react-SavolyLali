@@ -172,11 +172,11 @@ function App() {
   return (
     <div className="App" >
       {!selectedLocation && (
-        data && <Locations locations={data.results} onClick={handleLocationClick} />
+        data && data.results && <Locations locations={data.results} onClick={handleLocationClick} />
       )}
 
       {selectedLocation && !selectedArea && (
-        data && <Areas areas={data.areas} onClick={handleAreaClick} />
+        data.areas && <Areas areas={data.areas} onClick={handleAreaClick} onBackClick={handleBackClick} />
       )}
 
       {selectedLocation && selectedArea && data.pokemon_encounters && (

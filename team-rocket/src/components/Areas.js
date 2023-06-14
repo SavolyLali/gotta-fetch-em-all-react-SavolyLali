@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Areas({ areas, onClick }) {
+function Areas({ areas, onClick, onBackClick }) {
   const handleButtonClick = (area) => {
     onClick(area);
   };
@@ -15,6 +15,14 @@ function Areas({ areas, onClick }) {
           </button>
         </div>
       ))}
+      {!areas.length &&
+        <div key={'lost'} className='location'>
+          <h2>You are lost, go home!</h2>
+          <button onClick={onBackClick}>
+            Yes, captain!
+          </button>
+        </div>
+      }
     </div>
   );
 }
