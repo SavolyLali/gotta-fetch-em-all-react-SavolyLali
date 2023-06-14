@@ -61,3 +61,21 @@
     transform: rotate(360deg);
   }
 }
+#pokeCard{
+  padding-top: 25px;
+  width: 200px;
+  height: 300px;
+  margin: 20px;
+  display: inline-block;
+  background-color: bisque;
+  border-radius: 10px;
+  border-color: black;
+  border: solid;
+  border-width: 5px;
+}
+#pokeCardPokemon{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 120px;
+  width: auto;
+}
