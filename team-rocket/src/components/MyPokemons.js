@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-const MyPokemons = (props) => {
+const MyPokemons = ({pokemons, onBattleClick}) => {
   const [isChosen, setIsChosen] = useState(null);
+
   
   const handleChoosePokemon = (pokemon) => {
     setIsChosen(pokemon);
+    onBattleClick(pokemon);
   };
 
   return isChosen === null ? (
     <div>
-      {props.pokemons && props.pokemons.map((pokemon, index) => (
+      {pokemons && pokemons.map((pokemon, index) => (
         <div id="pokeCard" key={index}>
         <div>{pokemon.name}</div>
-        <img id="pokeCardPokemon" src={pokemon.url_front}/>
+        <img id="pokeCardPokemon" src={pokemon.url_front} />
         <div>HP: {pokemon.hp}</div>
         <div>ATK: {pokemon.attack}</div>
         <div>DEF: {pokemon.defense}</div>

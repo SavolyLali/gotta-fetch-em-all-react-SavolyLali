@@ -10,6 +10,8 @@ function App() {
   const [data, setData] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [isClicked, setIsClicked] = useState(false);
+  const [battlePokemon, setBattlePokemon] = useState(null);
+  const [enemyPokemon, setEnemyPokemon] = useState(null);
 
   const handleCountryClick = (location) => {
     setSelectedLocation(location);
@@ -22,6 +24,23 @@ function App() {
     setIsClicked(false);
     setUrl('https://pokeapi.co/api/v2/location?offset=0&limit=20');
   };
+
+  const handleFindPokemon = (pokemon) => {
+    setEnemyPokemon(pokemon);
+  }
+
+  const handleBattleClick = (pokemon) => {
+    setBattlePokemon(pokemon);
+    startBattle();
+  }
+
+  const startBattle = () => {
+    while(battlePokemon.hp > 0 && enemyPokemon.hp > 0) {
+      battleTurn();
+    }
+  }
+
+  const battleTurn = () => {}
 
   useEffect(() => {
     fetch(url)
@@ -41,7 +60,7 @@ function App() {
   const [pokeData, setPokeData] = useState([]);
 
   useEffect(() => {
-    usersPokemon.map((url, index) => {
+    usersPokemon.forEach((url, index) => {
  fetch(url)
         .then(response => response.json())
         .then(secondData => {
@@ -69,8 +88,8 @@ function App() {
       {selectedLocation && isClicked && (
         <div>
           <FightLocation location={selectedLocation} onClick={handleBackClick} />
-          <EnemyPokemon />
-          <MyPokemons pokemons={pokeData}/>
+          <EnemyPokemon onFind={handleFindPokemon}/>
+          <MyPokemons pokemons={pokeData} onClick={handleBattleClick}/>
         </div>
       )}
     </div>

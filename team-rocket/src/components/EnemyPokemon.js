@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 
-const EnemyPokemon = () => {
+const EnemyPokemon = ({onFind}) => {
 
   const [pokemonData, setPokemonData] = useState(null)
 
@@ -25,6 +25,7 @@ const EnemyPokemon = () => {
             };
             setPokemonData(pokemonProps)
             console.log(pokemonProps);
+            onFind(pokemonProps);
           })
       })
   }, []);
