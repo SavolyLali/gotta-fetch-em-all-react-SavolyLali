@@ -58,6 +58,9 @@ body{
 .enemy{
   justify-content: center;
   text-align: center;
+  position: relative;
+  left: 400px;
+  top: 200px;
 }
 
 .my-pokemons{
@@ -65,8 +68,9 @@ body{
   text-align: center;
   width: 70vw;
   position: relative;
-  top: 70px;
-  font-size: calc(5px + 2vmin);
+  top: 190px;
+  right: 50px;
+  font-size: calc(7px + 2vmin);
 }
 
 .back{
@@ -75,7 +79,7 @@ body{
 }
 
 .front{
-  width: 10%;
+  width: 8%;
   height: auto;
 }
 
@@ -102,7 +106,7 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(30px + 2vmin);
   color: white;
 }
 
@@ -120,8 +124,8 @@ body{
 }
 #pokeCard{
   padding-top: 25px;
-  width: 200px;
-  height: 300px;
+  width: 150px;
+  height: 230px;
   margin: 20px;
   display: inline-block;
   background-color: bisque;
@@ -132,8 +136,8 @@ body{
   text-align: center;
 }
 #pokeCardPokemon{
-  margin-top: 25px;
+  margin-top: 10px;
   margin-bottom: 25px;
-  height: 120px;
+  height: 60px;
   width: auto;
 }
