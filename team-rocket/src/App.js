@@ -4,6 +4,7 @@ import Locations from './components/Locations';
 import FightLocation from './components/FightLocation';
 import EnemyPokemon  from './components/EnemyPokemon';
 import MyPokemons  from './components/MyPokemons';
+import battleBackground from './images/battle-background.jpg';
 
 function App() {
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/location?offset=0&limit=20');
@@ -17,12 +18,16 @@ function App() {
     setSelectedLocation(location);
     setIsClicked(true);
     setUrl(location.url)
+    document.body.classList.remove('locationBackground');
+    document.body.classList.add('fightBackground');
   };
 
   const handleBackClick = () => {
     setSelectedLocation(null);
     setIsClicked(false);
     setUrl('https://pokeapi.co/api/v2/location?offset=0&limit=20');
+    document.body.classList.remove('fightBackground');
+    document.body.classList.add('locationBackground');
   };
 
   const handleFindPokemon = (pokemon) => {
@@ -95,7 +100,10 @@ winning()
   ]);
   const [pokeData, setPokeData] = useState([]);
 
+  const [backgroundImage, setBackgroundImage] = useState('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg');
+
   useEffect(() => {
+    document.body.classList.add('locationBackground');
     usersPokemon.forEach((url, index) => {
  fetch(url)
         .then(response => response.json())
@@ -117,10 +125,11 @@ winning()
 
 
   return (
-    <div className="App">
+    <div className="App" >
       {!selectedLocation && (
         data && <Locations locations={data.results} onClick={handleCountryClick} />
       )}
+      
   
       {selectedLocation && isClicked && (
         <div>
@@ -129,7 +138,7 @@ winning()
           <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick}/>
         </div>
       )}
-    </div>
+      </div>
   );
 }
 
