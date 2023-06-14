@@ -44,6 +44,19 @@ function App() {
     return (defender.hp - ((BASE_DAMAGE * attacker.attack / defender.defense) + MIN_DAMAGE) * random / DAMAGE_NORMALIZOR)
   }
 
+  const setBackHP = () => {
+    setBattlePokemon({...battlePokemon})
+  }
+
+  const setBackPikachu = (pokemon) => {
+    if (pokemon.name === 'pikachu') {
+    pokemon.maxHp = pokemon.maxHp / 10;
+    pokemon.attack = pokemon.attack / 10;
+    pokemon.defense = pokemon.defense / 10;
+  }
+  return pokemon
+  }
+
   const winning = () => {
     if (enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
       if (enemyPokemon.hp <= 0) {
@@ -54,6 +67,8 @@ function App() {
       battlePokemon.hp = battlePokemon.maxHp;
       setBattlePokemon(null)
       setEnemyPokemon(null)
+      setBattlePokemon(setBackPikachu(battlePokemon));
+      setBackHP()
       return false;
     }
     return true;
@@ -78,6 +93,7 @@ function App() {
   const pikachuSuper = (pokemon) => {
     if (pokemon.name === 'pikachu') {
       pokemon.hp = pokemon.hp * 10;
+      pokemon.maxHp = pokemon.maxHp * 10;
       pokemon.attack = pokemon.attack * 10;
       pokemon.defense = pokemon.defense * 10;
     }
