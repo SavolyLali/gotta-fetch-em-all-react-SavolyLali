@@ -4,12 +4,36 @@
 }
 
 
+.fightBackground{
+  background-image: url(images/battle-background.jpg);
+}
+
+.locationBackground{
+  background-image: url('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg');
+}
+
+body{
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+}
+
+#backgroundElement{
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  height: 100%;
+}
+
 #root{
+  margin: 0;
+  padding: 0;
   font-family: ThaleahFat;
 }
 
 .App {
-  background-size: cover;
+  margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100vh;
   text-transform: capitalize;

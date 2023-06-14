@@ -16,14 +16,14 @@ function App() {
     setSelectedLocation(location);
     setIsClicked(true);
     setUrl(location.url)
-    setBackgroundImage(battleBackground)
+    document.body.classList.add('fightBackground');
   };
 
   const handleBackClick = () => {
     setSelectedLocation(null);
     setIsClicked(false);
     setUrl('https://pokeapi.co/api/v2/location?offset=0&limit=20');
-    setBackgroundImage('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg')
+    document.body.classList.add('locationBackground');
   };
 
   useEffect(() => {
@@ -46,6 +46,7 @@ function App() {
   const [backgroundImage, setBackgroundImage] = useState('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg');
 
   useEffect(() => {
+    document.body.classList.add('locationBackground');
     usersPokemon.map((url, index) => {
  fetch(url)
         .then(response => response.json())
@@ -66,10 +67,11 @@ function App() {
 
 
   return (
-    <div className="App" style={{ backgroundImage: `url(${backgroundImage})`}}>
+    <div className="App" >
       {!selectedLocation && (
         data && <Locations locations={data.results} onClick={handleCountryClick} />
       )}
+      
   
       {selectedLocation && isClicked && (
         <div>
@@ -78,7 +80,7 @@ function App() {
           <MyPokemons pokemons={pokeData}/>
         </div>
       )}
-    </div>
+      </div>
   );
 }
 
