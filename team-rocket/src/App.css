@@ -42,7 +42,11 @@
 
 .my-pokemons{
   justify-content: center;
-  text-align: center; 
+  text-align: center;
+  width: 70vw;
+  position: relative;
+  top: 70px;
+  font-size: calc(5px + 2vmin);
 }
 
 .back{
