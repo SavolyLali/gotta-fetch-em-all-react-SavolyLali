@@ -52,6 +52,11 @@ function App() {
 
   const startBattle = () => {
     if (battlePokemon && enemyPokemon) {
+      if (battlePokemon.name === 'pikachu') {
+        battlePokemon.hp = battlePokemon.hp * 10;
+        battlePokemon.attack = battlePokemon.attack * 10;
+        battlePokemon.defense = battlePokemon.defense * 10;
+      }
     let isPlayerTurn = true;
     while(battlePokemon.hp > 0 && enemyPokemon.hp > 0) {
       console.log('while', battlePokemon.hp, enemyPokemon.hp)
@@ -101,6 +106,7 @@ function App() {
           const pokemonProps = {
             name : secondData.name,
             hp : secondData.stats[0].base_stat,
+            maxHp : secondData.stats[0].base_stat,
             attack : secondData.stats[1].base_stat,
             defense : secondData.stats[2].base_stat,
             url_front : secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
