@@ -33,7 +33,7 @@ const EnemyPokemon = ({onFind, battleEnemy}) => {
 
 battleEnemy ? (
   <div className='enemy'>
-      <div>{battleEnemy && battleEnemy.name}</div>
+      <h2>{battleEnemy && battleEnemy.name}</h2>
       <img className='front' src={battleEnemy && battleEnemy.url_front} alt="" />
       {
         battleEnemy &&

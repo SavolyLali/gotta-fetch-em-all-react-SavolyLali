@@ -71,7 +71,7 @@ body{
   text-align: center;
   width: 70vw;
   position: relative;
-  top: 170px;
+  top: 10px;
   right: 70px;
   font-size: calc(7px + 2vmin);
 }
@@ -150,6 +150,6 @@ body{
 #strikeButton{
   position: relative;
   bottom: 400px;
-  left: 150px;
+  left: 300px;
   scale: 2.5;
 }
