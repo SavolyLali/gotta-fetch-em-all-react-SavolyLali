@@ -4,7 +4,6 @@ import Locations from './components/Locations';
 import FightLocation from './components/FightLocation';
 import EnemyPokemon from './components/EnemyPokemon';
 import MyPokemons from './components/MyPokemons';
-import battleBackground from './images/battle-background.jpg';
 
 function App() {
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/location?offset=0&limit=20');
@@ -54,6 +53,7 @@ function App() {
       battlePokemon.hp = battlePokemon.maxHp;
       setBattlePokemon(null)
       setEnemyPokemon(null)
+      handleBackClick();
       return false;
     }
     return true;
@@ -105,9 +105,7 @@ function App() {
     "https://pokeapi.co/api/v2/pokemon/pikachu",
   ]);
   const [pokeData, setPokeData] = useState([]);
-
-  const [backgroundImage, setBackgroundImage] = useState('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg');
-
+  
   useEffect(() => {
     document.body.classList.add('locationBackground');
     usersPokemon.forEach((url, index) => {
@@ -141,6 +139,10 @@ function App() {
           <EnemyPokemon onFind={handleFindPokemon} battleEnemy={enemyPokemon} />
           <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick} battlePokemon={battlePokemon} />
         </div>
+      )}
+
+      {!winning && !selectedLocation && (
+        data && <Locations locations={data.results} onClick={handleCountryClick} />
       )}
     </div>
   );
