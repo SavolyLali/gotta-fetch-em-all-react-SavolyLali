@@ -29,18 +29,36 @@ function App() {
     setEnemyPokemon(pokemon);
   }
 
+  const calculateHP(attacker, defender) {
+    const MIN = 217;
+    const MAX = 255;
+    const BASE_DAMAGE = (2 / 5 + 2) * 60 / 50;
+    const MIN_DAMAGE = 2;
+    const DAMAGE_NORMALIZOR = 255;
+    const random = Math.floor(Math.random() * (MAX - MIN)) + MIN;
+    return defender.hp - ((BASE_DAMAGE*attacker.attack/defender.defense)+MIN_DAMAGE)*random/DAMAGE_NORMALIZOR
+  }
+
+  const battleTurn = (isPlayerTurn) => {
+    if (isPlayerTurn) {
+      
+    } else {}
+  }
+
+  const startBattle = () => {
+    let isPlayerTurn = true;
+    while(battlePokemon.hp > 0 && enemyPokemon.hp > 0) {
+      battleTurn(isPlayerTurn);
+      isPlayerTurn = !isPlayerTurn;
+    }
+  }
+
   const handleBattleClick = (pokemon) => {
     setBattlePokemon(pokemon);
     startBattle();
   }
 
-  const startBattle = () => {
-    while(battlePokemon.hp > 0 && enemyPokemon.hp > 0) {
-      battleTurn();
-    }
-  }
-
-  const battleTurn = () => {}
+  
 
   useEffect(() => {
     fetch(url)
