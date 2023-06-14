@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Locations from './components/Locations';
 import FightLocation from './components/FightLocation';
-import EnemyPokemon  from './components/EnemyPokemon';
-import MyPokemons  from './components/MyPokemons';
+import EnemyPokemon from './components/EnemyPokemon';
+import MyPokemons from './components/MyPokemons';
 import battleBackground from './images/battle-background.jpg';
 
 function App() {
@@ -41,33 +41,39 @@ function App() {
     const MIN_DAMAGE = 2;
     const DAMAGE_NORMALIZOR = 255;
     const random = Math.floor(Math.random() * (MAX - MIN)) + MIN;
-    return (defender.hp - ((BASE_DAMAGE*attacker.attack/defender.defense)+MIN_DAMAGE)*random/DAMAGE_NORMALIZOR)
+    return (defender.hp - ((BASE_DAMAGE * attacker.attack / defender.defense) + MIN_DAMAGE) * random / DAMAGE_NORMALIZOR)
   }
 
   const winning = () => {
-    if (enemyPokemon.hp <= 0) {
-      console.log('you won');
-      return false;
-    } else if (battlePokemon.hp <= 0) {
+    if (enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
+      if (enemyPokemon.hp <= 0) {
+        console.log('you won');
+      } else if (battlePokemon.hp <= 0) {
         console.log('you lost')
       }
       battlePokemon.hp = battlePokemon.maxHp;
-      return true;
+      setBattlePokemon(null)
+      setEnemyPokemon(null)
+      return false;
+    }
+    return true;
   }
 
   const handleFightClick = () => {
     console.log('fight', battlePokemon.hp, enemyPokemon.hp)
     if (battlePokemon && enemyPokemon) {
       enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
-      setEnemyPokemon({...enemyPokemon})
-const win = winning()
-if (win) {
-setTimeout(() => {
-  battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
-  setBattlePokemon({...battlePokemon})
-}, 500);
-winning()
-}  }}
+      setEnemyPokemon({ ...enemyPokemon })
+      const win = winning()
+      if (win) {
+        setTimeout(() => {
+          battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
+          setBattlePokemon({ ...battlePokemon })
+        }, 500);
+        winning()
+      }
+    }
+  }
 
   const pikachuSuper = (pokemon) => {
     if (pokemon.name === 'pikachu') {
@@ -105,21 +111,21 @@ winning()
   useEffect(() => {
     document.body.classList.add('locationBackground');
     usersPokemon.forEach((url, index) => {
- fetch(url)
+      fetch(url)
         .then(response => response.json())
         .then(secondData => {
           const pokemonProps = {
-            name : secondData.name,
-            hp : secondData.stats[0].base_stat,
-            maxHp : secondData.stats[0].base_stat,
-            attack : secondData.stats[1].base_stat,
-            defense : secondData.stats[2].base_stat,
-            url_front : secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
-            url_back : secondData.sprites.versions['generation-v']['black-white'].animated.back_default
+            name: secondData.name,
+            hp: secondData.stats[0].base_stat,
+            maxHp: secondData.stats[0].base_stat,
+            attack: secondData.stats[1].base_stat,
+            defense: secondData.stats[2].base_stat,
+            url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
+            url_back: secondData.sprites.versions['generation-v']['black-white'].animated.back_default
           };
           setPokeData(prevData => [...prevData, pokemonProps]);
+        })
     })
-  })
   }, []);
 
 
@@ -129,16 +135,16 @@ winning()
       {!selectedLocation && (
         data && <Locations locations={data.results} onClick={handleCountryClick} />
       )}
-      
-  
+
+
       {selectedLocation && isClicked && (
         <div>
           <FightLocation location={selectedLocation} onClick={handleBackClick} />
-          <EnemyPokemon onFind={handleFindPokemon}/>
-          <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick}/>
+          <EnemyPokemon onFind={handleFindPokemon} battleEnemy={enemyPokemon} />
+          <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick} battlePokemon={battlePokemon} />
         </div>
       )}
-      </div>
+    </div>
   );
 }
 

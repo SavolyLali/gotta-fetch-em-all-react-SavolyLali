@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const MyPokemons = ({pokemons, onBattleClick, onFightClick}) => {
+const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
   const [isChosen, setIsChosen] = useState(null);
 
   const handleChoosePokemon = (pokemon) => {
@@ -10,11 +10,11 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick}) => {
 
   return isChosen === null ? (
     <div className="my-pokemons">
-      {props.pokemons &&
-        props.pokemons.map((pokemon, index) => (
+      {pokemons &&
+        pokemons.map((pokemon, index) => (
           <div id="pokeCard" key={index}>
             <div>{pokemon.name}</div>
-            <img id="pokeCardPokemon" src={pokemon.url_front} />
+            <img id="pokeCardPokemon" src={pokemon.url_front} alt=""/>
             <div>HP: {pokemon.hp}</div>
             <div>ATK: {pokemon.attack}</div>
             <div>DEF: {pokemon.defense}</div>
@@ -34,7 +34,7 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick}) => {
             "verylow"} style={{width: `${isChosen.hp > 0 ? isChosen.hp/isChosen.maxHp*100 : 0}%`}}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
           </div>
         </div>
-      <button id="strikeButton">Strike!</button>
+      <button id="strikeButton" onClick={onFightClick}>Strike!</button>
     </div>
   );
 };

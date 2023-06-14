@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 
-const EnemyPokemon = ({onFind}) => {
+const EnemyPokemon = ({onFind, EnemyPokemon}) => {
 
   const [pokemonData, setPokemonData] = useState(null)
 
