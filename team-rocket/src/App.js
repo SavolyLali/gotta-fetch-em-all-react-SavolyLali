@@ -13,6 +13,7 @@ function App() {
   const [battlePokemon, setBattlePokemon] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
   const [enemyTurn, setEnemyTurn] = useState(false);
+  const [pokeData, setPokeData] = useState([]);
 
   const handleCountryClick = (location) => {
     setSelectedLocation(location);
@@ -47,10 +48,28 @@ function App() {
     return (defender.hp - ((BASE_DAMAGE * attacker.attack / defender.defense) + MIN_DAMAGE) * random / DAMAGE_NORMALIZOR)
   }
 
+  const addNewPokemon = () => {
+    fetch(enemyPokemon.defeat)
+    .then(response => response.json())
+    .then(secondData => {
+      const pokemonProps = {
+        name: secondData.name,
+        hp: secondData.stats[0].base_stat,
+        maxHp: secondData.stats[0].base_stat,
+        attack: secondData.stats[1].base_stat,
+        defense: secondData.stats[2].base_stat,
+        url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
+        url_back: secondData.sprites.versions['generation-v']['black-white'].animated.back_default
+      };
+      setPokeData(prevData => [...prevData, pokemonProps]);
+    })
+  }
+
   const winning = () => {
     if (!enemyPokemon || !enemyPokemon || enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
       if (!enemyPokemon || enemyPokemon.hp <= 0) {
         console.log('you won');
+        addNewPokemon();
       } else {
         console.log('you lost')
       }
@@ -71,8 +90,10 @@ function App() {
         setTimeout(() => {
           battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
           setBattlePokemon({ ...battlePokemon })
-          setEnemyTurn(false)
           winning()
+          setTimeout(() => {
+            setEnemyTurn(false)
+          }, 500);
         }, 500);
       }
     }
@@ -91,8 +112,8 @@ function App() {
 
   const handleBattleClick = (pokemon) => {
     pokemon = {...pokemon}
-    pikachuSuper(pokemon);
-    setBattlePokemon({...pokemon})
+    pokemon = pikachuSuper(pokemon);
+    setBattlePokemon(pokemon)
   }
 
   useEffect(() => {
@@ -110,7 +131,6 @@ function App() {
     "https://pokeapi.co/api/v2/pokemon/squirtle",
     "https://pokeapi.co/api/v2/pokemon/pikachu",
   ]);
-  const [pokeData, setPokeData] = useState([]);
   
   useEffect(() => {
     document.body.classList.add('locationBackground');
@@ -144,10 +164,6 @@ function App() {
           <EnemyPokemon onFind={handleFindPokemon} battleEnemy={enemyPokemon} />
           <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick} battlePokemon={battlePokemon} enemyTurn={enemyTurn}/>
         </div>
-      )}
-
-      {!winning && !selectedLocation && (
-        data && <Locations locations={data.results} onClick={handleCountryClick} />
       )}
     </div>
   );

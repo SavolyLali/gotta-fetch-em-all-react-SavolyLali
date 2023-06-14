@@ -21,7 +21,8 @@ const EnemyPokemon = ({onFind, battleEnemy}) => {
               maxHp: secondData.stats[0].base_stat,
               attack: secondData.stats[1].base_stat,
               defense: secondData.stats[2].base_stat,
-              url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default
+              url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
+              defeat : secondUrl
             };
             setPokemonData(pokemonProps)
             console.log(pokemonProps);
