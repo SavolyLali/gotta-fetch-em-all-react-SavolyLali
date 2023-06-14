@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const MyPokemons = ({pokemons, onBattleClick}) => {
+const MyPokemons = ({pokemons, onBattleClick, onFightClick}) => {
   const [isChosen, setIsChosen] = useState(null);
 
   

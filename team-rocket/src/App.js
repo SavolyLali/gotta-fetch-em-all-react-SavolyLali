@@ -27,7 +27,6 @@ function App() {
 
   const handleFindPokemon = (pokemon) => {
     setEnemyPokemon(pokemon);
-    console.log('enemy-set')
   }
 
   const calculateHP = (attacker, defender) => {
@@ -40,46 +39,44 @@ function App() {
     return (defender.hp - ((BASE_DAMAGE*attacker.attack/defender.defense)+MIN_DAMAGE)*random/DAMAGE_NORMALIZOR)
   }
 
-  const battleTurn = (isPlayerTurn) => {
-    if (isPlayerTurn) {
-      enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
-      setEnemyPokemon({...enemyPokemon})
-    } else {
-      battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
-      setBattlePokemon({...battlePokemon})
-    }
-  }
-
-  const startBattle = () => {
-    if (battlePokemon && enemyPokemon) {
-      if (battlePokemon.name === 'pikachu') {
-        battlePokemon.hp = battlePokemon.hp * 10;
-        battlePokemon.attack = battlePokemon.attack * 10;
-        battlePokemon.defense = battlePokemon.defense * 10;
-      }
-    let isPlayerTurn = true;
-    while(battlePokemon.hp > 0 && enemyPokemon.hp > 0) {
-      console.log('while', battlePokemon.hp, enemyPokemon.hp)
-
-        battleTurn(isPlayerTurn);
-        isPlayerTurn = !isPlayerTurn;
-
-    }
-    if (battlePokemon.hp > 0) {
-      console.log('you won') } else {
+  const winning = () => {
+    if (enemyPokemon.hp <= 0) {
+      console.log('you won');
+      return false;
+    } else if (battlePokemon.hp <= 0) {
         console.log('you lost')
       }
       battlePokemon.hp = battlePokemon.maxHp;
-    } 
+      return true;
+  }
+
+  const handleFightClick = () => {
+    console.log('fight', battlePokemon.hp, enemyPokemon.hp)
+    if (battlePokemon && enemyPokemon) {
+      enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
+      setEnemyPokemon({...enemyPokemon})
+const win = winning()
+if (win) {
+setTimeout(() => {
+  battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
+  setBattlePokemon({...battlePokemon})
+}, 500);
+winning()
+}  }}
+
+  const pikachuSuper = (pokemon) => {
+    if (pokemon.name === 'pikachu') {
+      pokemon.hp = pokemon.hp * 10;
+      pokemon.attack = pokemon.attack * 10;
+      pokemon.defense = pokemon.defense * 10;
+    }
+    return pokemon
   }
 
   const handleBattleClick = (pokemon) => {
-    console.log('player-set')
+    pokemon = pikachuSuper(pokemon);
     setBattlePokemon(pokemon)
-    startBattle();
   }
-
-  
 
   useEffect(() => {
     fetch(url)
@@ -129,7 +126,7 @@ function App() {
         <div>
           <FightLocation location={selectedLocation} onClick={handleBackClick} />
           <EnemyPokemon onFind={handleFindPokemon}/>
-          <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick}/>
+          <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick}/>
         </div>
       )}
     </div>
