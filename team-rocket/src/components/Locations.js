@@ -6,9 +6,9 @@ function Locations({ locations, onClick }) {
   };
 
   return (
-    <div>
+    <div className='locations'>
       {locations && locations.map(location => (
-        <div key={location.name}>
+        <div key={location.name} className='location'>
           <h2>{location.name}</h2>
           <button onClick={() => handleButtonClick(location)}>
             Travel
