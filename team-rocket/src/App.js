@@ -165,12 +165,12 @@ function App() {
       });
   }, [url]);
 
-  const [usersPokemon, setUsersPokemon] = useState([
+  const usersPokemon = [
     "https://pokeapi.co/api/v2/pokemon/bulbasaur",
     "https://pokeapi.co/api/v2/pokemon/charmander",
     "https://pokeapi.co/api/v2/pokemon/squirtle",
     "https://pokeapi.co/api/v2/pokemon/pikachu",
-  ]);
+  ];
 
   useEffect(() => {
     document.body.classList.add('locationBackground');
@@ -191,6 +191,7 @@ function App() {
           setPokeData(prevData => [...prevData, pokemonProps]);
         })
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

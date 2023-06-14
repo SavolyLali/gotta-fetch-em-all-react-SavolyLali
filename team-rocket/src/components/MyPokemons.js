@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import chooseSoundEffect from '../sounds/ichooseyou.mp3';
 
 const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enemyTurn }) => {
-  const [isChosen, setIsChosen] = useState(null);
 
   const playSoundEffect = () => {
     const audio = new Audio(chooseSoundEffect);
@@ -10,7 +9,6 @@ const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enem
   };
 
   const handleChoosePokemon = (pokemon) => {
-    setIsChosen(pokemon);
     onBattleClick(pokemon);
     playSoundEffect()
   };
@@ -41,8 +39,7 @@ const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enem
                 "verylow"} style={{ width: `${battlePokemon.hp > 0 ? battlePokemon.hp / battlePokemon.maxHp * 100 : 0}%` }}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
         </div>
       </div>
-      {
-        enemyTurn ?
+      {enemyTurn ?
           <button id="strikeButton" onClick={onFightClick} disabled>Strike!</button>
           :
           <button id="strikeButton" onClick={onFightClick}>Strike!</button>

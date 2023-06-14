@@ -23,6 +23,7 @@ const EnemyPokemon = ({ onFind, battleEnemy, enemyList }) => {
         console.log(pokemonProps);
         onFind(pokemonProps);
       })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
 
@@ -60,7 +61,6 @@ const EnemyPokemon = ({ onFind, battleEnemy, enemyList }) => {
         <img className='front' src={pokemonData && pokemonData.url_front} alt="" />
       </div>
     )
-
   )
 }
 
