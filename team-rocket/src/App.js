@@ -90,7 +90,11 @@ function App() {
         playSoundEffect(lose)
         console.log('you lost')
       }
-      handleBackClick();
+      setTimeout(() => {
+        battlePokemon.hit = false
+        enemyPokemon.hit = false
+        handleBackClick();
+      }, 500);
       return false;
     }
     return true;
@@ -101,20 +105,30 @@ function App() {
       enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
       if (battlePokemon.name === 'pikachu' && enemyPokemon.hp <= 0) {
         playSoundEffect(pikachu)
+        enemyPokemon.hit = 'pikachu'
+        battlePokemon.hit = false
+        /*setEnemyPokemon({ ...enemyPokemon })
+        setBattlePokemon({ ...battlePokemon })*/
         setEnemyTurn(true)
         setTimeout(() => {
           winning()
-        }, 5000);
+        }, 5500);
       } else {
+      enemyPokemon.hit = true
+      battlePokemon.hit = false
       playSoundEffect(pew)
       setEnemyPokemon({ ...enemyPokemon })
+      setBattlePokemon({ ...battlePokemon })
       setEnemyTurn(true)
       const win = winning()
       if (win) {
         setTimeout(() => {
           playSoundEffect(pew)
           battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
+          battlePokemon.hit = true
+          enemyPokemon.hit = false
           setBattlePokemon({ ...battlePokemon })
+          setEnemyPokemon({ ...enemyPokemon })
           winning()
           setTimeout(() => {
             setEnemyTurn(false)
@@ -170,7 +184,8 @@ function App() {
             attack: secondData.stats[1].base_stat,
             defense: secondData.stats[2].base_stat,
             url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
-            url_back: secondData.sprites.versions['generation-v']['black-white'].animated.back_default
+            url_back: secondData.sprites.versions['generation-v']['black-white'].animated.back_default,
+            hit: false
           };
           setPokeData(prevData => [...prevData, pokemonProps]);
         })

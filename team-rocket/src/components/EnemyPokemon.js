@@ -17,7 +17,8 @@ const EnemyPokemon = ({onFind, battleEnemy, enemyList}) => {
               attack: secondData.stats[1].base_stat,
               defense: secondData.stats[2].base_stat,
               url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
-              defeat : pokeURL
+              defeat : pokeURL,
+              hit: false
             };
             setPokemonData(pokemonProps)
             console.log(pokemonProps);
@@ -29,7 +30,7 @@ const EnemyPokemon = ({onFind, battleEnemy, enemyList}) => {
 battleEnemy ? (
   <div className='enemy'>
       <h2>{battleEnemy && battleEnemy.name}</h2>
-      <img className='front' src={battleEnemy && battleEnemy.url_front} alt="" />
+      <img className={battleEnemy.hit === 'pikachu' ? 'front pikachuHit' : battleEnemy.hit ? 'front pokemonHit' : 'front'} src={battleEnemy && battleEnemy.url_front} alt="" />
       {
         battleEnemy &&
         <div id="hpwrap">

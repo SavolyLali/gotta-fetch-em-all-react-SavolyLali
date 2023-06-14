@@ -32,7 +32,7 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon, enemy
   ) : (
     <div className="my-pokemons">
       <h2>{battlePokemon && battlePokemon.name}</h2>
-      <img className="back" src={battlePokemon.url_back} alt=""/>
+      <img className={battlePokemon.hit ? 'back pokemonHit' : 'back'} src={battlePokemon.url_back} alt=""/>
       <div id="hpwrap">
           <div id="hpbar">
             <div id="hp" className={(battlePokemon.hp/battlePokemon.maxHp) >= 0.6 ? "veryhigh" :
