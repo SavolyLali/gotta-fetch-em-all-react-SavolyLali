@@ -27,6 +27,7 @@ function App() {
 
   const handleFindPokemon = (pokemon) => {
     setEnemyPokemon(pokemon);
+    console.log('enemy-set')
   }
 
   const calculateHP = (attacker, defender) => {
@@ -36,27 +37,34 @@ function App() {
     const MIN_DAMAGE = 2;
     const DAMAGE_NORMALIZOR = 255;
     const random = Math.floor(Math.random() * (MAX - MIN)) + MIN;
-    return defender.hp - ((BASE_DAMAGE*attacker.attack/defender.defense)+MIN_DAMAGE)*random/DAMAGE_NORMALIZOR
+    return (defender.hp - ((BASE_DAMAGE*attacker.attack/defender.defense)+MIN_DAMAGE)*random/DAMAGE_NORMALIZOR)
   }
 
   const battleTurn = (isPlayerTurn) => {
     if (isPlayerTurn) {
-      setEnemyPokemon({...enemyPokemon, hp: calculateHP(battlePokemon, enemyPokemon)})
+      enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
+      setEnemyPokemon({...enemyPokemon})
     } else {
-      setBattlePokemon({...battlePokemon, hp: calculateHP(enemyPokemon, battlePokemon)})
+      battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
+      setBattlePokemon({...battlePokemon})
     }
   }
 
   const startBattle = () => {
+    if (battlePokemon && enemyPokemon) {
     let isPlayerTurn = true;
     while(battlePokemon.hp > 0 && enemyPokemon.hp > 0) {
-      battleTurn(isPlayerTurn);
-      isPlayerTurn = !isPlayerTurn;
-    }
+      console.log('while', battlePokemon.hp, enemyPokemon.hp)
+
+        battleTurn(isPlayerTurn);
+        isPlayerTurn = !isPlayerTurn;
+
+    }}
   }
 
   const handleBattleClick = (pokemon) => {
-    setBattlePokemon(pokemon);
+    console.log('player-set')
+    setBattlePokemon(pokemon)
     startBattle();
   }
 
@@ -109,7 +117,7 @@ function App() {
         <div>
           <FightLocation location={selectedLocation} onClick={handleBackClick} />
           <EnemyPokemon onFind={handleFindPokemon}/>
-          <MyPokemons pokemons={pokeData} onClick={handleBattleClick}/>
+          <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick}/>
         </div>
       )}
     </div>

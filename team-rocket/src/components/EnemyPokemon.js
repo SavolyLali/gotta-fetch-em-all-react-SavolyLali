@@ -38,7 +38,10 @@ const EnemyPokemon = ({onFind}) => {
         pokemonData &&
         <div id="hpwrap">
           <div id="hpbar">
-            <div id="hp" className={(pokemonData.hp/pokemonData.maxHp) >= 0.6 ? "veryhigh" : (pokemonData.hp/pokemonData.maxHp) >= 0.4 ? "high" : (pokemonData.hp/pokemonData.maxHp) >= 0.2 ? "low" : "verylow"} style={{width: `${pokemonData.hp/pokemonData.maxHp*100}%`}}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
+            <div id="hp" className={(pokemonData.hp/pokemonData.maxHp) >= 0.6 ? "veryhigh" :
+            (pokemonData.hp/pokemonData.maxHp) >= 0.4 ? "high" :
+            (pokemonData.hp/pokemonData.maxHp) >= 0.2 ? "low" :
+            "verylow"} style={{width: `${pokemonData.hp > 0 ? pokemonData.hp/pokemonData.maxHp*100 : 0}%`}}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
           </div>
         </div>
       }
