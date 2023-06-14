@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 
-const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
-  const [isChosen, setIsChosen] = useState(null);
-
-  const handleChoosePokemon = (pokemon) => {
-    setIsChosen(pokemon);
-    onBattleClick(pokemon);
-  };
+const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon, enemyTurn}) => {
 
   return battlePokemon === null ? (
     <div className="my-pokemons">
@@ -18,7 +12,7 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
             <div>HP: {pokemon.hp}</div>
             <div>ATK: {pokemon.attack}</div>
             <div>DEF: {pokemon.defense}</div>
-            <button onClick={() => handleChoosePokemon(pokemon)}>Choose</button>
+            <button onClick={() => onBattleClick(pokemon)}>Choose</button>
           </div>
         ))}
     </div>
@@ -34,7 +28,12 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
             "verylow"} style={{width: `${battlePokemon.hp > 0 ? battlePokemon.hp/battlePokemon.maxHp*100 : 0}%`}}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
           </div>
         </div>
+        {
+        enemyTurn ?
+        <button id="strikeButton" onClick={onFightClick} disabled>Strike!</button>
+        :
       <button id="strikeButton" onClick={onFightClick}>Strike!</button>
+    }
     </div>
   );
 };

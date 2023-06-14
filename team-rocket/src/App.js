@@ -12,6 +12,7 @@ function App() {
   const [isClicked, setIsClicked] = useState(false);
   const [battlePokemon, setBattlePokemon] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
+  const [enemyTurn, setEnemyTurn] = useState(false);
 
   const handleCountryClick = (location) => {
     setSelectedLocation(location);
@@ -26,6 +27,7 @@ function App() {
     setIsClicked(false);
     setBattlePokemon(null)
     setEnemyPokemon(null)
+    setEnemyTurn(false)
     setUrl('https://pokeapi.co/api/v2/location?offset=0&limit=20');
     document.body.classList.remove('fightBackground');
     document.body.classList.add('locationBackground');
@@ -46,13 +48,12 @@ function App() {
   }
 
   const winning = () => {
-    if (enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
-      if (enemyPokemon.hp <= 0) {
+    if (!enemyPokemon || !enemyPokemon || enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
+      if (!enemyPokemon || enemyPokemon.hp <= 0) {
         console.log('you won');
-      } else if (battlePokemon.hp <= 0) {
+      } else {
         console.log('you lost')
       }
-      battlePokemon.hp = battlePokemon.maxHp;
       handleBackClick();
       return false;
     }
@@ -64,13 +65,15 @@ function App() {
     if (battlePokemon && enemyPokemon) {
       enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
       setEnemyPokemon({ ...enemyPokemon })
+      setEnemyTurn(true)
       const win = winning()
       if (win) {
         setTimeout(() => {
           battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
           setBattlePokemon({ ...battlePokemon })
+          setEnemyTurn(false)
+          winning()
         }, 500);
-        winning()
       }
     }
   }
@@ -135,12 +138,11 @@ function App() {
         data && <Locations locations={data.results} onClick={handleCountryClick} />
       )}
 
-
       {selectedLocation && isClicked && (
         <div>
           <FightLocation location={selectedLocation} onClick={handleBackClick} />
           <EnemyPokemon onFind={handleFindPokemon} battleEnemy={enemyPokemon} />
-          <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick} battlePokemon={battlePokemon} />
+          <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick} battlePokemon={battlePokemon} enemyTurn={enemyTurn}/>
         </div>
       )}
 
