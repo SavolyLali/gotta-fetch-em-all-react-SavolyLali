@@ -96,7 +96,6 @@ function App() {
   }
 
   const handleFightClick = () => {
-    console.log('fight', battlePokemon.hp, enemyPokemon.hp)
     if (battlePokemon && enemyPokemon) {
       playSoundEffect(pew)
       enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
@@ -180,10 +179,10 @@ function App() {
         data && <Areas areas={data.areas} onClick={handleAreaClick} />
       )}
 
-      {selectedLocation && selectedArea && (
+      {selectedLocation && selectedArea && data.pokemon_encounters && (
         <div>
           <FightLocation location={selectedLocation} onClick={handleBackClick} />
-          <EnemyPokemon onFind={handleFindPokemon} battleEnemy={enemyPokemon} />
+          <EnemyPokemon onFind={handleFindPokemon} battleEnemy={enemyPokemon} enemyList={data.pokemon_encounters} />
           <MyPokemons pokemons={pokeData} onBattleClick={handleBattleClick} onFightClick={handleFightClick} battlePokemon={battlePokemon} enemyTurn={enemyTurn}/>
         </div>
       )}

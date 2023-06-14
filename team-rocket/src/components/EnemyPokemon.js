@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 
-const EnemyPokemon = ({onFind, battleEnemy}) => {
+const EnemyPokemon = ({onFind, battleEnemy, enemyList}) => {
 
   const [pokemonData, setPokemonData] = useState(null)
+  const pokeURL = enemyList[Math.floor(Math.random() * enemyList.length)].pokemon.url
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon')
-      .then(response => response.json())
-      .then(data => {
-        const secondUrl = data.results[Math.floor(Math.random() * 20)].url;
-        console.log(secondUrl)
-
-        return fetch(secondUrl)
+        fetch(pokeURL)
           .then(response => response.json())
           .then(secondData => {
             const pokemonProps = {
@@ -22,13 +17,12 @@ const EnemyPokemon = ({onFind, battleEnemy}) => {
               attack: secondData.stats[1].base_stat,
               defense: secondData.stats[2].base_stat,
               url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
-              defeat : secondUrl
+              defeat : pokeURL
             };
             setPokemonData(pokemonProps)
             console.log(pokemonProps);
             onFind(pokemonProps);
           })
-      })
   }, []);
   return (
 
