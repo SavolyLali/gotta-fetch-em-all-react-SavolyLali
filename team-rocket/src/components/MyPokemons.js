@@ -24,14 +24,14 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
     </div>
   ) : (
     <div className="my-pokemons">
-      <div>{isChosen.name}</div>
-      <img className="back" src={isChosen.url_back} alt=""/>
+      <div>{battlePokemon.name}</div>
+      <img className="back" src={battlePokemon.url_back} alt=""/>
       <div id="hpwrap">
           <div id="hpbar">
-            <div id="hp" className={(isChosen.hp/isChosen.maxHp) >= 0.6 ? "veryhigh" :
-            (isChosen.hp/isChosen.maxHp) >= 0.4 ? "high" :
-            (isChosen.hp/isChosen.maxHp) >= 0.2 ? "low" :
-            "verylow"} style={{width: `${isChosen.hp > 0 ? isChosen.hp/isChosen.maxHp*100 : 0}%`}}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
+            <div id="hp" className={(battlePokemon.hp/battlePokemon.maxHp) >= 0.6 ? "veryhigh" :
+            (battlePokemon.hp/battlePokemon.maxHp) >= 0.4 ? "high" :
+            (battlePokemon.hp/battlePokemon.maxHp) >= 0.2 ? "low" :
+            "verylow"} style={{width: `${battlePokemon.hp > 0 ? battlePokemon.hp/battlePokemon.maxHp*100 : 0}%`}}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
           </div>
         </div>
       <button id="strikeButton" onClick={onFightClick}>Strike!</button>
