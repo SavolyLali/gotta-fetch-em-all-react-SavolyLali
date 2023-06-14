@@ -30,7 +30,7 @@ const EnemyPokemon = () => {
   return (
     <div>
     <div>{pokemonData && pokemonData.name}</div>
-    <img src={pokemonData && pokemonData.url_front}/>
+    <img src={pokemonData && pokemonData.url_front} alt=""/>
     </div>
   )
 }
