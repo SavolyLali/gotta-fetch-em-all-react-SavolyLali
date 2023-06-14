@@ -24,6 +24,8 @@ function App() {
   const handleBackClick = () => {
     setSelectedLocation(null);
     setIsClicked(false);
+    setBattlePokemon(null)
+    setEnemyPokemon(null)
     setUrl('https://pokeapi.co/api/v2/location?offset=0&limit=20');
     document.body.classList.remove('fightBackground');
     document.body.classList.add('locationBackground');
@@ -51,8 +53,6 @@ function App() {
         console.log('you lost')
       }
       battlePokemon.hp = battlePokemon.maxHp;
-      setBattlePokemon(null)
-      setEnemyPokemon(null)
       handleBackClick();
       return false;
     }
