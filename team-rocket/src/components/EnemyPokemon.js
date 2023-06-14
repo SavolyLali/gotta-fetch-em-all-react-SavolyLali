@@ -32,8 +32,6 @@ const EnemyPokemon = () => {
 
 
     <div className='enemy'>
-      <div>{pokemonData && pokemonData.name}</div>
-      <img className='front' src={pokemonData && pokemonData.url_front} alt="" />
       {
         pokemonData &&
         <div id="hpwrap">
@@ -42,6 +40,8 @@ const EnemyPokemon = () => {
           </div>
         </div>
       }
+      <div>{pokemonData && pokemonData.name}</div>
+      <img className='front' src={pokemonData && pokemonData.url_front} alt="" />
     </div>
 
 
