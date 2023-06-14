@@ -6,7 +6,9 @@
 
 .fightBackground{
   background-image: url(images/battle-background.jpg);
-  background-size: cover;
+  background-size:1440px 840px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .locationBackground{
@@ -59,10 +61,11 @@ body{
 }
 
 .enemy{
+  width: 500px;
   justify-content: center;
   text-align: center;
   position: relative;
-  left: 400px;
+  left: 800px;
   top: 140px;
 }
 
@@ -74,6 +77,7 @@ body{
   top: 10px;
   right: 70px;
   font-size: calc(7px + 2vmin);
+  padding-left: 10px;
 }
 
 .back{
