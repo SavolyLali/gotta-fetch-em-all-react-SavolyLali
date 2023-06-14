@@ -16,6 +16,7 @@ function App() {
     setSelectedLocation(location);
     setIsClicked(true);
     setUrl(location.url)
+    document.body.classList.remove('locationBackground');
     document.body.classList.add('fightBackground');
   };
 
@@ -23,6 +24,7 @@ function App() {
     setSelectedLocation(null);
     setIsClicked(false);
     setUrl('https://pokeapi.co/api/v2/location?offset=0&limit=20');
+    document.body.classList.remove('fightBackground');
     document.body.classList.add('locationBackground');
   };
 

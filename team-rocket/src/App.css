@@ -6,10 +6,12 @@
 
 .fightBackground{
   background-image: url(images/battle-background.jpg);
+  background-size: cover;
 }
 
 .locationBackground{
   background-image: url('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg');
+  background-size: cover;
 }
 
 body{
@@ -18,12 +20,6 @@ body{
   padding: 0;
 }
 
-#backgroundElement{
-  margin: 0;
-  padding: 0;
-  background-size: cover;
-  height: 100%;
-}
 
 #root{
   margin: 0;
