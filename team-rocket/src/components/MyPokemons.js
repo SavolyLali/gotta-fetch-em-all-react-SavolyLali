@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
   const [isChosen, setIsChosen] = useState(null);
@@ -8,7 +8,7 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
     onBattleClick(pokemon);
   };
 
-  return isChosen === null ? (
+  return battlePokemon === null ? (
     <div className="my-pokemons">
       {pokemons &&
         pokemons.map((pokemon, index) => (
@@ -24,7 +24,7 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
     </div>
   ) : (
     <div className="my-pokemons">
-      <div>{battlePokemon.name}</div>
+      <h2>{battlePokemon && battlePokemon.name}</h2>
       <img className="back" src={battlePokemon.url_back} alt=""/>
       <div id="hpwrap">
           <div id="hpbar">

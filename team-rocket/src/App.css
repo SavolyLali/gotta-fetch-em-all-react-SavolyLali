@@ -63,7 +63,7 @@ body{
   text-align: center;
   position: relative;
   left: 400px;
-  top: 200px;
+  top: 140px;
 }
 
 .my-pokemons{
@@ -71,8 +71,8 @@ body{
   text-align: center;
   width: 70vw;
   position: relative;
-  top: 170px;
-  right: 50px;
+  top: 10px;
+  right: 70px;
   font-size: calc(7px + 2vmin);
 }
 
@@ -82,8 +82,8 @@ body{
 }
 
 .front{
-  width: 12%;
-  height: auto;
+  width: 15vh;
+  height:max-content;
 }
 
 .App-logo {
@@ -150,6 +150,6 @@ body{
 #strikeButton{
   position: relative;
   bottom: 400px;
-  left: 150px;
+  left: 300px;
   scale: 2.5;
 }

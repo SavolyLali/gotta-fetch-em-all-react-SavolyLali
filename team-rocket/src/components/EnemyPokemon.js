@@ -33,7 +33,7 @@ const EnemyPokemon = ({onFind, battleEnemy}) => {
 
 battleEnemy ? (
   <div className='enemy'>
-      <div>{battleEnemy && battleEnemy.name}</div>
+      <h2>{battleEnemy && battleEnemy.name}</h2>
       <img className='front' src={battleEnemy && battleEnemy.url_front} alt="" />
       {
         battleEnemy &&
@@ -50,8 +50,6 @@ battleEnemy ? (
 ):(
 
     <div className='enemy'>
-      <div>{pokemonData && pokemonData.name}</div>
-      <img className='front' src={pokemonData && pokemonData.url_front} alt="" />
       {
         pokemonData &&
         <div id="hpwrap">
@@ -63,6 +61,8 @@ battleEnemy ? (
           </div>
         </div>
       }
+      <div>{pokemonData && pokemonData.name}</div>
+      <img className='front' src={pokemonData && pokemonData.url_front} alt="" />
     </div>
 )
 
