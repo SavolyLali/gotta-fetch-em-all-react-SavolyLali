@@ -9,8 +9,13 @@
 
 .locations{
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  padding: 10px;
+  grid-template-columns: 330.2px 330.2px 330.2px 330.2px;
+  grid-template-rows: 110px 110px 110px 110px 110px;
+  column-gap: 20px;
+  row-gap: 35px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .location{
@@ -19,6 +24,7 @@
   justify-content: center;
   padding: 20px;
   text-align: center;
+  border-style: solid;
 }
 
 .App-logo {
