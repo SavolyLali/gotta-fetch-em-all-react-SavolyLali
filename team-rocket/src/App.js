@@ -83,7 +83,6 @@ function App() {
   const winning = () => {
     if (!enemyPokemon || !enemyPokemon || enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
       if (!enemyPokemon || enemyPokemon.hp <= 0) {
-        
         playSoundEffect(win)
         console.log('you won');
         addNewPokemon();
@@ -102,6 +101,7 @@ function App() {
       enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
       if (battlePokemon.name === 'pikachu' && enemyPokemon.hp <= 0) {
         playSoundEffect(pikachu)
+        setEnemyTurn(true)
         setTimeout(() => {
           winning()
         }, 5000);
