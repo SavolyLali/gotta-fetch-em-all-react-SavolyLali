@@ -38,6 +38,9 @@
 .enemy{
   justify-content: center;
   text-align: center;
+  position: relative;
+  left: 400px;
+  top: 200px;
 }
 
 .my-pokemons{
@@ -45,8 +48,9 @@
   text-align: center;
   width: 70vw;
   position: relative;
-  top: 70px;
-  font-size: calc(5px + 2vmin);
+  top: 170px;
+  right: 50px;
+  font-size: calc(7px + 2vmin);
 }
 
 .back{
@@ -55,7 +59,7 @@
 }
 
 .front{
-  width: 10%;
+  width: 8%;
   height: auto;
 }
 
@@ -100,8 +104,8 @@
 }
 #pokeCard{
   padding-top: 25px;
-  width: 200px;
-  height: 300px;
+  width: 150px;
+  height: 230px;
   margin: 20px;
   display: inline-block;
   background-color: bisque;
@@ -112,8 +116,8 @@
   text-align: center;
 }
 #pokeCardPokemon{
-  margin-top: 25px;
+  margin-top: 10px;
   margin-bottom: 25px;
-  height: 120px;
+  height: 60px;
   width: auto;
 }
