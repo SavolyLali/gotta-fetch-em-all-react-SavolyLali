@@ -25,7 +25,7 @@ const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon, enemy
             <div>HP: {pokemon.hp}</div>
             <div>ATK: {pokemon.attack}</div>
             <div>DEF: {pokemon.defense}</div>
-            <button onClick={() => onBattleClick(pokemon)}>Choose</button>
+            <button onClick={() => handleChoosePokemon(pokemon)}>Choose</button>
           </div>
         ))}
     </div>
