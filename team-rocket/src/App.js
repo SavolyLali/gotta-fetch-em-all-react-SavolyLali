@@ -4,8 +4,17 @@ import Locations from './components/Locations';
 import FightLocation from './components/FightLocation';
 import EnemyPokemon from './components/EnemyPokemon';
 import MyPokemons from './components/MyPokemons';
+import pew from './sounds/bamboo.mp3';
+import win from './sounds/battle-win.mp3';
+import lose from './sounds/gameover.wav';
 
 function App() {
+
+  const playSoundEffect = (sound) => {
+    const audio = new Audio(sound);
+    audio.play();
+  };
+
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/location?offset=0&limit=20');
   const [data, setData] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -48,8 +57,10 @@ function App() {
   const winning = () => {
     if (enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
       if (enemyPokemon.hp <= 0) {
+        playSoundEffect(win)
         console.log('you won');
       } else if (battlePokemon.hp <= 0) {
+        playSoundEffect(lose)
         console.log('you lost')
       }
       battlePokemon.hp = battlePokemon.maxHp;
@@ -62,11 +73,13 @@ function App() {
   const handleFightClick = () => {
     console.log('fight', battlePokemon.hp, enemyPokemon.hp)
     if (battlePokemon && enemyPokemon) {
+      playSoundEffect(pew)
       enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
       setEnemyPokemon({ ...enemyPokemon })
       const win = winning()
       if (win) {
         setTimeout(() => {
+          playSoundEffect(pew)
           battlePokemon.hp = calculateHP(enemyPokemon, battlePokemon)
           setBattlePokemon({ ...battlePokemon })
         }, 500);

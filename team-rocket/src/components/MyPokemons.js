@@ -1,11 +1,18 @@
 import React, { useState } from "react";
+import chooseSoundEffect from '../sounds/ichooseyou.mp3';
 
 const MyPokemons = ({pokemons, onBattleClick, onFightClick, battlePokemon}) => {
   const [isChosen, setIsChosen] = useState(null);
 
+  const playSoundEffect = () => {
+    const audio = new Audio(chooseSoundEffect);
+    audio.play();
+  };
+
   const handleChoosePokemon = (pokemon) => {
     setIsChosen(pokemon);
     onBattleClick(pokemon);
+    playSoundEffect()
   };
 
   return battlePokemon === null ? (
