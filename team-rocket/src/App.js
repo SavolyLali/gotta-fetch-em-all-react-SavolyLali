@@ -30,7 +30,7 @@ function App() {
   };
 
   const handleFindPokemon = (pokemon) => {
-    setEnemyPokemon(pokemon);
+    setEnemyPokemon({...pokemon});
   }
 
   const calculateHP = (attacker, defender) => {
@@ -76,8 +76,10 @@ function App() {
   }
 
   const pikachuSuper = (pokemon) => {
+    pokemon = {...pokemon}
     if (pokemon.name === 'pikachu') {
       pokemon.hp = pokemon.hp * 10;
+      pokemon.maxHp = pokemon.maxHp * 10;
       pokemon.attack = pokemon.attack * 10;
       pokemon.defense = pokemon.defense * 10;
     }
@@ -85,8 +87,9 @@ function App() {
   }
 
   const handleBattleClick = (pokemon) => {
-    pokemon = pikachuSuper(pokemon);
-    setBattlePokemon(pokemon)
+    pokemon = {...pokemon}
+    pikachuSuper(pokemon);
+    setBattlePokemon({...pokemon})
   }
 
   useEffect(() => {
