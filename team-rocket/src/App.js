@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Locations from './components/Locations';
+import Areas from './components/Areas';
 import FightLocation from './components/FightLocation';
 import EnemyPokemon from './components/EnemyPokemon';
 import MyPokemons from './components/MyPokemons';
@@ -18,23 +19,27 @@ function App() {
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/location?offset=0&limit=20');
   const [data, setData] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
-  const [isClicked, setIsClicked] = useState(false);
+  const [selectedArea, setSelectedArea] = useState(null);
   const [battlePokemon, setBattlePokemon] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
   const [enemyTurn, setEnemyTurn] = useState(false);
   const [pokeData, setPokeData] = useState([]);
 
-  const handleCountryClick = (location) => {
+  const handleLocationClick = (location) => {
     setSelectedLocation(location);
-    setIsClicked(true);
     setUrl(location.url)
+  };
+
+  const handleAreaClick = (area) => {
+    setSelectedArea(area);
+    setUrl(area.url)
     document.body.classList.remove('locationBackground');
     document.body.classList.add('fightBackground');
   };
 
   const handleBackClick = () => {
     setSelectedLocation(null);
-    setIsClicked(false);
+    setSelectedArea(null);
     setBattlePokemon(null)
     setEnemyPokemon(null)
     setEnemyTurn(false)
@@ -168,10 +173,14 @@ function App() {
   return (
     <div className="App" >
       {!selectedLocation && (
-        data && <Locations locations={data.results} onClick={handleCountryClick} />
+        data && <Locations locations={data.results} onClick={handleLocationClick} />
       )}
 
-      {selectedLocation && isClicked && (
+      {selectedLocation && !selectedArea && (
+        data && <Areas areas={data.areas} onClick={handleAreaClick} />
+      )}
+
+      {selectedLocation && selectedArea && (
         <div>
           <FightLocation location={selectedLocation} onClick={handleBackClick} />
           <EnemyPokemon onFind={handleFindPokemon} battleEnemy={enemyPokemon} />
