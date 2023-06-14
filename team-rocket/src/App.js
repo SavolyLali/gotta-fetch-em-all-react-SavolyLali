@@ -59,7 +59,13 @@ function App() {
         battleTurn(isPlayerTurn);
         isPlayerTurn = !isPlayerTurn;
 
-    }}
+    }
+    if (battlePokemon.hp > 0) {
+      console.log('you won') } else {
+        console.log('you lost')
+      }
+      battlePokemon.hp = battlePokemon.maxHp;
+    } 
   }
 
   const handleBattleClick = (pokemon) => {
