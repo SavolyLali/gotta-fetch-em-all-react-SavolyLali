@@ -8,6 +8,7 @@ import MyPokemons from './components/MyPokemons';
 import pew from './sounds/bamboo.mp3';
 import win from './sounds/battle-win.mp3';
 import lose from './sounds/gameover.wav';
+import pikachu from './sounds/pikachu.mp3';
 
 function App() {
 
@@ -82,6 +83,7 @@ function App() {
   const winning = () => {
     if (!enemyPokemon || !enemyPokemon || enemyPokemon.hp <= 0 || battlePokemon.hp <= 0) {
       if (!enemyPokemon || enemyPokemon.hp <= 0) {
+        
         playSoundEffect(win)
         console.log('you won');
         addNewPokemon();
@@ -97,8 +99,14 @@ function App() {
 
   const handleFightClick = () => {
     if (battlePokemon && enemyPokemon) {
-      playSoundEffect(pew)
       enemyPokemon.hp = calculateHP(battlePokemon, enemyPokemon)
+      if (battlePokemon.name === 'pikachu' && enemyPokemon.hp <= 0) {
+        playSoundEffect(pikachu)
+        setTimeout(() => {
+          winning()
+        }, 5000);
+      } else {
+      playSoundEffect(pew)
       setEnemyPokemon({ ...enemyPokemon })
       setEnemyTurn(true)
       const win = winning()
@@ -113,7 +121,7 @@ function App() {
           }, 500);
         }, 500);
       }
-    }
+    }}
   }
 
   const pikachuSuper = (pokemon) => {
