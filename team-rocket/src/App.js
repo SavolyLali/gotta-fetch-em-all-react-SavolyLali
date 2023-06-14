@@ -29,7 +29,7 @@ function App() {
     setEnemyPokemon(pokemon);
   }
 
-  const calculateHP(attacker, defender) {
+  const calculateHP = (attacker, defender) => {
     const MIN = 217;
     const MAX = 255;
     const BASE_DAMAGE = (2 / 5 + 2) * 60 / 50;
@@ -41,8 +41,10 @@ function App() {
 
   const battleTurn = (isPlayerTurn) => {
     if (isPlayerTurn) {
-      
-    } else {}
+      setEnemyPokemon({...enemyPokemon, hp: calculateHP(battlePokemon, enemyPokemon)})
+    } else {
+      setBattlePokemon({...battlePokemon, hp: calculateHP(enemyPokemon, battlePokemon)})
+    }
   }
 
   const startBattle = () => {
