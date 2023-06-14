@@ -1,11 +1,11 @@
-#root{
-  background-image: url('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg');
-}
-
 .App {
   width: 100vw;
   height: 100vh;
   text-transform: capitalize;
+}
+
+#root{
+  background-image: url('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg');
 }
 
 .locations{
@@ -14,7 +14,7 @@
   grid-template-rows: 110px 110px 110px 110px 110px;
   column-gap: 20px;
   row-gap: 35px;
-  padding: 20px;
+  padding-top: 50px;
   justify-content: center;
   align-items: center;
 }
@@ -27,9 +27,34 @@
   border-style: solid;
 }
 
+.enemy{
+  justify-content: center;
+  text-align: center;
+}
+
+.my-pokemons{
+  justify-content: center;
+  text-align: center; 
+}
+
+.back{
+  width: 25%;
+  height: auto;
+}
+
+.front{
+  width: 10%;
+  height: auto;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.fight-location{
+  justify-content: center;
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {

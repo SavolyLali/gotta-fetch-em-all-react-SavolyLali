@@ -31,8 +31,8 @@ const EnemyPokemon = () => {
   return (
 
 
-    <div>
-      <img src={pokemonData && pokemonData.url_front} alt="" />
+    <div className='enemy'>
+      <img className='front' src={pokemonData && pokemonData.url_front} alt="" />
       {
         pokemonData &&
         <div id="hpwrap">
