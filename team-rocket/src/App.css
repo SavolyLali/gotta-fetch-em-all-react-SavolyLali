@@ -5,11 +5,12 @@
 
 
 #root{
-  background-image: url('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg');
+/*   background-image: url('https://www.itl.cat/pngfile/big/101-1015310_pokemon-video-games-gameboy-keep-calm-and-wallpaper.jpg'); */
   font-family: ThaleahFat;
 }
 
 .App {
+  background-size: cover;
   width: 100vw;
   height: 100vh;
 }
@@ -79,6 +80,7 @@
   border-color: black;
   border: solid;
   border-width: 5px;
+  text-align: center;
 }
 #pokeCardPokemon{
   margin-top: 25px;
