@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 const EnemyPokemon = ({ onFind, battleEnemy, enemyList }) => {
 
@@ -7,13 +7,13 @@ const EnemyPokemon = ({ onFind, battleEnemy, enemyList }) => {
   const LOW = 0.2;
   const HUNDRED_PERCENT = 100;
 
-  const [pokemonData, setPokemonData] = useState(null)
-  const pokeURL = enemyList[Math.floor(Math.random() * enemyList.length)].pokemon.url
+  const [pokemonData, setPokemonData] = useState(null);
+  const pokeURL = enemyList[Math.floor(Math.random() * enemyList.length)].pokemon.url;
 
   useEffect(() => {
     fetch(pokeURL)
-      .then(response => response.json())
-      .then(secondData => {
+      .then((response) => response.json())
+      .then((secondData) => {
         const HEALTH = 0;
         const ATTACK = 1;
         const DEFENSE = 2;
@@ -23,30 +23,32 @@ const EnemyPokemon = ({ onFind, battleEnemy, enemyList }) => {
           maxHp: secondData.stats[HEALTH].base_stat,
           attack: secondData.stats[ATTACK].base_stat,
           defense: secondData.stats[DEFENSE].base_stat,
-          url_front: secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
+          urlFront:
+            secondData.sprites.versions['generation-v']['black-white'].animated.front_default,
           defeat: pokeURL,
-          hit: false
+          hit: false,
         };
-        setPokemonData(pokemonProps)
+        setPokemonData(pokemonProps);
         console.log(pokemonProps);
         onFind(pokemonProps);
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+      });
   }, []);
   return (
 
     battleEnemy ? (
       <div className='enemy'>
         <h2>{battleEnemy && battleEnemy.name}</h2>
-        <img className={battleEnemy.hit === 'pikachu' ? 'front pikachuHit' : battleEnemy.hit ? 'front pokemonHit' : 'front'} src={battleEnemy && battleEnemy.url_front} alt="" />
+        <img className={battleEnemy.hit === 'pikachu' ?
+          'front pikachuHit' : battleEnemy.hit ?
+            'front pokemonHit' : 'front'} src={battleEnemy && battleEnemy.urlFront} alt="" />
         {
           battleEnemy &&
           <div id="hpwrap">
             <div id="hpbar">
-              <div id="hp" className={(battleEnemy.hp / battleEnemy.maxHp) >= HIGH ? "veryhigh" :
-                (battleEnemy.hp / battleEnemy.maxHp) >= MEDIUM ? "high" :
-                  (battleEnemy.hp / battleEnemy.maxHp) >= LOW ? "low" :
-                    "verylow"} style={{ width: `${battleEnemy.hp > 0 ? battleEnemy.hp / battleEnemy.maxHp
+              <div id="hp" className={(battleEnemy.hp / battleEnemy.maxHp) >= HIGH ? 'veryhigh' :
+                (battleEnemy.hp / battleEnemy.maxHp) >= MEDIUM ? 'high' :
+                  (battleEnemy.hp / battleEnemy.maxHp) >= LOW ? 'low' :
+                    'verylow'} style={{ width: `${battleEnemy.hp > 0 ? battleEnemy.hp / battleEnemy.maxHp
                       * HUNDRED_PERCENT : 0}%` }}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
             </div>
           </div>
@@ -59,19 +61,19 @@ const EnemyPokemon = ({ onFind, battleEnemy, enemyList }) => {
           pokemonData &&
           <div id="hpwrap">
             <div id="hpbar">
-              <div id="hp" className={(pokemonData.hp / pokemonData.maxHp) >= HIGH ? "veryhigh" :
-                (pokemonData.hp / pokemonData.maxHp) >= MEDIUM ? "high" :
-                  (pokemonData.hp / pokemonData.maxHp) >= LOW ? "low" :
-                    "verylow"} style={{ width: `${pokemonData.hp > 0 ? pokemonData.hp / pokemonData.maxHp
+              <div id="hp" className={(pokemonData.hp / pokemonData.maxHp) >= HIGH ? 'veryhigh' :
+                (pokemonData.hp / pokemonData.maxHp) >= MEDIUM ? 'high' :
+                  (pokemonData.hp / pokemonData.maxHp) >= LOW ? 'low' :
+                    'verylow'} style={{ width: `${pokemonData.hp > 0 ? pokemonData.hp / pokemonData.maxHp
                       * HUNDRED_PERCENT : 0}%` }}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
             </div>
           </div>
         }
         <div>{pokemonData && pokemonData.name}</div>
-        <img className='front' src={pokemonData && pokemonData.url_front} alt="" />
+        <img className='front' src={pokemonData && pokemonData.urlFront} alt="" />
       </div>
     )
-  )
-}
+  );
+};
 
-export default EnemyPokemon
+export default EnemyPokemon;
