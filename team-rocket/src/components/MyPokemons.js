@@ -24,7 +24,7 @@ const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enem
         pokemons.map((pokemon, index) => (
           <div id="pokeCard" key={index}>
             <div>{pokemon.name}</div>
-            <img id="pokeCardPokemon" src={pokemon.url_front} alt="" />
+            <img id="pokeCardPokemon" src={pokemon.urlFront} alt="" />
             <div>HP: {pokemon.hp}</div>
             <div>ATK: {pokemon.attack}</div>
             <div>DEF: {pokemon.defense}</div>
@@ -36,7 +36,7 @@ const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enem
     <div className="my-pokemons">
       <h2>{battlePokemon && battlePokemon.name}</h2>
       <img className={battlePokemon.hit ?
-        'back pokemonHit' : 'back'} src={battlePokemon.url_back} alt="" />
+        'back pokemonHit' : 'back'} src={battlePokemon.urlBack} alt="" />
       <div id="hpwrap">
         <div id="hpbar">
           <div id="hp" className={(battlePokemon.hp / battlePokemon.maxHp) >= HIGH ? 'veryhigh' :
