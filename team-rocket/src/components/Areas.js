@@ -7,7 +7,7 @@ function Areas({ areaList, onClick, onBackClick }) {
 
   return (
     <div className='locationGrid'>
-      {areaList && areaList.map(area => (
+      {areaList && areaList.map((area) => (
         <div key={area.name} className='location'>
           <h2>{area.name}</h2>
           <button onClick={() => handleButtonClick(area)}>

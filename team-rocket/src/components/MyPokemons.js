@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import chooseSoundEffect from '../sounds/ichooseyou.mp3';
 
 const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enemyTurn }) => {
@@ -15,7 +15,7 @@ const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enem
 
   const handleChoosePokemon = (pokemon) => {
     onBattleClick(pokemon);
-    playSoundEffect()
+    playSoundEffect();
   };
 
   return battlePokemon === null ? (
@@ -24,7 +24,7 @@ const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enem
         pokemons.map((pokemon, index) => (
           <div id="pokeCard" key={index}>
             <div>{pokemon.name}</div>
-            <img id="pokeCardPokemon" src={pokemon.url_front} alt="" />
+            <img id="pokeCardPokemon" src={pokemon.urlFront} alt="" />
             <div>HP: {pokemon.hp}</div>
             <div>ATK: {pokemon.attack}</div>
             <div>DEF: {pokemon.defense}</div>
@@ -35,20 +35,21 @@ const MyPokemons = ({ pokemons, onBattleClick, onFightClick, battlePokemon, enem
   ) : (
     <div className="my-pokemons">
       <h2>{battlePokemon && battlePokemon.name}</h2>
-      <img className={battlePokemon.hit ? 'back pokemonHit' : 'back'} src={battlePokemon.url_back} alt="" />
+      <img className={battlePokemon.hit ?
+        'back pokemonHit' : 'back'} src={battlePokemon.urlBack} alt="" />
       <div id="hpwrap">
         <div id="hpbar">
-          <div id="hp" className={(battlePokemon.hp / battlePokemon.maxHp) >= HIGH ? "veryhigh" :
-            (battlePokemon.hp / battlePokemon.maxHp) >= MEDIUM ? "high" :
-              (battlePokemon.hp / battlePokemon.maxHp) >= LOW ? "low" :
-                "verylow"} style={{ width: `${battlePokemon.hp > 0 ? battlePokemon.hp / battlePokemon.maxHp
+          <div id="hp" className={(battlePokemon.hp / battlePokemon.maxHp) >= HIGH ? 'veryhigh' :
+            (battlePokemon.hp / battlePokemon.maxHp) >= MEDIUM ? 'high' :
+              (battlePokemon.hp / battlePokemon.maxHp) >= LOW ? 'low' :
+                'verylow'} style={{ width: `${battlePokemon.hp > 0 ? battlePokemon.hp / battlePokemon.maxHp
                   * HUNDRED_PERCENT : 0}%` }}>&nbsp;&nbsp;HP&nbsp;&nbsp;</div>
         </div>
       </div>
       {enemyTurn ?
-          <button id="strikeButton" onClick={onFightClick} disabled>Strike!</button>
-          :
-          <button id="strikeButton" onClick={onFightClick}>Strike!</button>
+        <button id="strikeButton" onClick={onFightClick} disabled>Strike!</button>
+        :
+        <button id="strikeButton" onClick={onFightClick}>Strike!</button>
       }
     </div>
   );
