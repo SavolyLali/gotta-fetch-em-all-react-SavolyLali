@@ -118,14 +118,14 @@ Project Link: [https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-Savoly
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
-[contributors-url]: https://github.com/Amdu94/dungeon-crawl-java/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
-[forks-url]: https://github.com/Amdu94/dungeon-crawl-java/network/members
-[stars-shield]: https://img.shields.io/github/stars/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
-[stars-url]: https://github.com/Amdu94/dungeon-crawl-java/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
-[issues-url]: https://github.com/Amdu94/dungeon-crawl-java/issues
+[contributors-shield]: https://img.shields.io/github/contributors/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
+[contributors-url]: https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
+[forks-url]: https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali/network/members
+[stars-shield]: https://img.shields.io/github/stars/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
+[stars-url]: https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali/stargazers
+[issues-shield]: https://img.shields.io/github/issues/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
+[issues-url]: https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/lajos-daniel-savoly/
 [React-url]: https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white
