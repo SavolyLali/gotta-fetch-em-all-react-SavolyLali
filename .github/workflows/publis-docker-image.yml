@@ -1,0 +1,37 @@
+name: Docker Image CI/CD
+
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:latest
+        options: --privileged
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t pokemon-app .
+
+      - name: Run tests
+        run: docker run pokemon-app npm test
+
+      - name: Push Docker image to Docker Hub
+        run: |
+          echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker tag pokemon-app $DOCKERHUB_USERNAME/pokemon-app:${{ github.sha }}
+          docker push $DOCKERHUB_USERNAME/pokemon-app:${{ github.sha }}
+        env:
+          DOCKERHUB_USERNAME: savolylali
+          DOCKERHUB_PASSWORD: Csontos17
