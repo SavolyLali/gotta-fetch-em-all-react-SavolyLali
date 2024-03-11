@@ -26,6 +26,8 @@ jobs:
 
       - name: Run tests
         run: docker run pokemon-app npm test
+        env:
+          CI: true
 
       - name: Push Docker image to Docker Hub
         run: |
@@ -35,3 +37,4 @@ jobs:
         env:
           DOCKERHUB_USERNAME: savolylali
           DOCKERHUB_PASSWORD: Csontos17
+
