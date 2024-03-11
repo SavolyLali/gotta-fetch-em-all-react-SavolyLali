@@ -25,9 +25,7 @@ jobs:
         run: cd team-rocket && docker build -t pokemon-app .
 
       - name: Run tests
-        run: docker run pokemon-app npm test
-        env:
-          CI: true
+        run: docker run pokemon-app CI=true npm test
 
       - name: Push Docker image to Docker Hub
         run: |
