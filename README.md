@@ -135,27 +135,27 @@ Lajos Daniel Savoly - [GitHub Profile](https://github.com/SavolyLali)
 Daniel Toth - [GitHub Profile](https://github.com/Daniel-343)
 
 Project
-Link: [https://github.com/SavolyLali/gotta-fetch-em-all-react-SavolyLali](https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali)
+Link: [https://github.com/SavolyLali/gotta-fetch-em-all-react-SavolyLali](https://github.com/SavolyLali/gotta-fetch-em-all-react-SavolyLali)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/SavolyLali/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
 
-[contributors-url]: https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali/graphs/contributors
+[contributors-url]: https://github.com/SavolyLali/gotta-fetch-em-all-react-SavolyLali/graphs/contributors
 
 [forks-shield]: https://img.shields.io/github/forks/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
 
-[forks-url]: https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali/network/members
+[forks-url]: https://github.com/SavolyLali/gotta-fetch-em-all-react-SavolyLali/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/SavolyLali/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
 
-[stars-url]: https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali/stargazers
+[stars-url]: https://github.com/SavolyLali/gotta-fetch-em-all-react-SavolyLali/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/SavolyLali/gotta-fetch-em-all-react-SavolyLali.svg?style=for-the-badge
 
-[issues-url]: https://github.com/CodecoolGlobal/gotta-fetch-em-all-react-SavolyLali/issues
+[issues-url]: https://github.com/SavolyLali/gotta-fetch-em-all-react-SavolyLali/issues
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
